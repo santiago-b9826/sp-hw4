@@ -9,6 +9,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 /* función para generar <size> cantidad de datos aleatorios */
 void gen_data(double *array, int size);
@@ -28,12 +29,15 @@ int main()
     int n, iters;
     long seed;
 
+    clock_t start, end;
+    double cpu_time_used;
+
     // Obtener las dimensiones
-    printf("Ingrese la dimensión n:\n");
+    // printf("Ingrese la dimensión n:\n");
     scanf("%d", &n);
-    printf("Ingrese el número de iteraciones:\n");
+    // printf("Ingrese el número de iteraciones:\n");
     scanf("%d", &iters);
-    printf("Ingrese semilla para el generador de números aleatorios:\n");
+    // printf("Ingrese semilla para el generador de números aleatorios:\n");
     scanf("%ld", &seed);
     srand(seed);
 
@@ -41,6 +45,8 @@ int main()
     A = malloc(sizeof(double) * n * n);
     x = malloc(sizeof(double) * n);
     y = malloc(sizeof(double) * n);
+
+    start = clock();
 
     //generar valores para las matrices
     gen_data(A, n * n);
@@ -50,6 +56,11 @@ int main()
     // print_matrix("A", A, n);
 
     mat_vect_mult(A, x, y, n, iters);
+
+    end = clock();
+    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
+
+    printf("Total Time: %f\n", cpu_time_used);
 
     // print_vector("y", y, n);
     free(A);

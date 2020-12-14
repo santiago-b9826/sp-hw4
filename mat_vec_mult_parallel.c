@@ -33,11 +33,11 @@ int main()
     double cpu_time_used;
     
     // Obtener las dimensiones
-    printf("Ingrese la dimensión n:\n");
+    // printf("Ingrese la dimensión n:\n");
     scanf("%d", &n);
-    printf("Ingrese el número de iteraciones:\n");
+    // printf("Ingrese el número de iteraciones:\n");
     scanf("%d", &iters);
-    printf("Ingrese semilla para el generador de números aleatorios:\n");
+    // printf("Ingrese semilla para el generador de números aleatorios:\n");
     scanf("%ld", &seed);
     srand(seed);
 
@@ -58,12 +58,12 @@ int main()
     */
     mat_vect_mult(A, x, y, n, iters);
 
-    // print_vector("y", y, n);
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
 
     printf("Total Time: %f\n", cpu_time_used);
 
+    // print_vector("y", y, n);
     free(A);
     free(x);
     free(y);
