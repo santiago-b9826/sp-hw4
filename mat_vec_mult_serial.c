@@ -17,6 +17,8 @@ void gen_data(double *array, int size);
 void mat_vect_mult(double *A, double *x, double *y, int n, int it);
 /* función para imprimir un vector llamado <name> de tamaño <m>*/
 void print_vector(char *name, double *y, int m);
+/* función para imprimir una matriz llamado <name> de tamaño <m x n>*/
+void print_matrix(char *name, double *A, int m);
 
 int main()
 {
@@ -44,9 +46,12 @@ int main()
     gen_data(A, n * n);
     gen_data(x, n);
 
+    // print_vector("x", x, n);
+    // print_matrix("A", A, n);
+
     mat_vect_mult(A, x, y, n, iters);
 
-    print_vector("y", y, n);
+    // print_vector("y", y, n);
     free(A);
     free(x);
     free(y);
@@ -85,4 +90,15 @@ void print_vector(char *name, double *y, int m)
     for (i = 0; i < m; i++)
         printf("%f ", y[i]);
     printf("\n");
+}
+
+void print_matrix(char *name, double *A, int m)
+{
+    int i, j;
+    printf("\nMatrix %s\n", name);
+    for (i = 0; i < m; i++){
+        for (j = 0; j < m; j++)
+            printf("%f ", A[i * m + j]);
+        printf("\n");
+    }
 }
